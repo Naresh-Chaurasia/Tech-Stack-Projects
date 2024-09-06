@@ -1,0 +1,29 @@
+= Mentorship Projects
+:toc: right
+:toclevels: 5
+:sectnums:
+:sectnumlevels: 5
+
+
+== Video Game
+
+* Go inside project directory #video-game-db-api#
+* mvn spring-boot:run
+* Control + C to stop the application
+
+*URL*
+
+* http://localhost:8080/swagger-ui/index.html#/
+
+== Students
+
+*How to Start Application*
+
+* Go to the location of Jar file.
+* java -jar studentApp.jar (Java 17+)
+* java -jar rest-java-lt-17.jar (Java less than 17)
+* Control + C to stop the application
+
+*URL*
+
+* http://localhost:8080/student/list
