@@ -23,7 +23,96 @@
 * java -jar studentApp.jar (Java 17+)
 * java -jar rest-java-lt-17.jar (Java less than 17)
 * Control + C to stop the application
-
-*URL*
-
 * http://localhost:8080/student/list
+
+[source,json]
+----
+[
+  {
+    "id": 1,
+    "firstName": "Vernon",
+    "lastName": "Harper",
+    "email": "egestas.rhoncus.Proin@massaQuisqueporttitor.org",
+    "programme": "Financial Analysis",
+    "courses": [
+      "Accounting",
+      "Statistics"
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Murphy",
+    "lastName": "Holmes",
+    "email": "faucibus.orci.luctus@Duisac.net",
+    "programme": "Financial Analysis",
+    "courses": [
+      "Accounting",
+      "Statistics"
+    ]
+  }
+]
+----
+
+####################
+
+=== Test Scenarios
+
+*Test for Correct Status Code*
+
+* *Objective:* Ensure the API call returns a *200 OK* status.
+* *Description:* Verify that the API response has a status code of 200, indicating that the call was successful.
+* *Assertion:*
+
+```java
+assertEquals(200, response.getStatusCode());
+```
+
+---
+
+*Test for the Correct Number of Students*
+
+* *Objective:* Ensure the total number of students in the response matches the expected count.
+* *Description:* Fetch the length of the array and verify that it contains exactly 2 student objects.
+* *JsonPath Assertion:*
+```java
+int totalStudents = JsonPath.parse(responseBody).read("$.length()");
+assertEquals(2, totalStudents);
+```
+
+---
+
+*Test for Non-Empty First Names*
+
+* *Objective:* Ensure all students have non-empty `firstName` values.
+* *Description:* Fetch all first names and verify none are empty or null.
+* *JsonPath Assertion:*
+```java
+List<String> firstNames = JsonPath.parse(responseBody).read("$[*].firstName");
+assertTrue(firstNames.stream().allMatch(name -> name != null && !name.isEmpty()));
+```
+
+---
+
+*Test for Valid Email Format*
+
+* *Objective:* Ensure that the emails for all students have a valid email format.
+* *Description:* Fetch all email addresses and validate that they follow the correct email format pattern.
+* *JsonPath Assertion:*
+
+```java
+List<String> emails = JsonPath.parse(responseBody).read("$[*].email");
+emails.forEach(email -> assertTrue(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")));
+```
+
+---
+
+*Test for Courses Array Size*
+
+* *Objective:* Ensure each student has exactly 2 courses.
+* *Description:* Fetch the `courses` array for each student and check that it contains exactly 2 entries.
+* *JsonPath Assertion:*
+
+```java
+List<List<String>> courses = JsonPath.parse(responseBody).read("$[*].courses");
+courses.forEach(courseList -> assertEquals(2, courseList.size()));
+```
