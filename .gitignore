@@ -1,0 +1,54 @@
+# Maven target directory
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# VS Code
+.vscode/
+
+# Java compiled files
+*.class
+
+# Package distribution
+*.war
+*.ear
+
+# ZIP files
+*.zip
+
+# Test reports
+surefire-reports/

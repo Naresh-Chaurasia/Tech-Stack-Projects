@@ -1,0 +1,188 @@
+= Mentorship Projects
+:toc: right
+:toclevels: 5
+:sectnums:
+:sectnumlevels: 5
+
+== Selenium
+
+* https://github.com/NarendraCodeHub/the-internet.herokuapp/tree/master
+** Java
+
+* https://github.com/mlozowska/the-internet.herokuapp
+** Python
+
+* https://developer.chrome.com/docs/chromedriver/downloads
+* https://googlechromelabs.github.io/chrome-for-testing/
+** Chrome Driver
+
+* Selenium
+** /Users/nareshchaurasia/nc/GenC/selenium-maven-project
+
+
+== Video Game Project
+
+* James Willett
+* https://www.videogamedb.uk/swagger-ui/index.html
+* Go inside project directory #video-game-db-api#
+* mvn spring-boot:run
+* Control + C to stop the application
+
+*URL*
+
+* http://localhost:8080/swagger-ui/index.html#/
+
+##############################################
+
+
+== Students Project
+
+*How to Start Application*
+
+0. Tejasvi Hegde
+1. Go to the location of Jar file.
+2. java -jar studentApp.jar (Java 17+)
+3. java -jar rest-java-lt-17.jar (Java less than 17)
+4. Control + C to stop the application
+5. http://localhost:8080/student/list
+6. java -jar studentApp.jar --server.port=8085 (Java 17+)
+
+[source,json]
+----
+[
+  {
+    "id": 1,
+    "firstName": "Vernon",
+    "lastName": "Harper",
+    "email": "egestas.rhoncus.Proin@massaQuisqueporttitor.org",
+    "programme": "Financial Analysis",
+    "courses": [
+      "Accounting",
+      "Statistics"
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Murphy",
+    "lastName": "Holmes",
+    "email": "faucibus.orci.luctus@Duisac.net",
+    "programme": "Financial Analysis",
+    "courses": [
+      "Accounting",
+      "Statistics"
+    ]
+  }
+]
+----
+
+####################
+
+=== URLs / End Points
+
+* http://localhost:8080/student/list?programme=Computer%20Science&limit=1
+* http://localhost:8080/student/2
+
+####################
+
+=== Test Scenarios
+
+*Test for Correct Status Code*
+
+* *Objective:* Ensure the API call returns a *200 OK* status.
+* *Description:* Verify that the API response has a status code of 200, indicating that the call was successful.
+* *Assertion:*
+
+```java
+assertEquals(200, response.getStatusCode());
+```
+
+---
+
+*Test for the Correct Number of Students*
+
+* *Objective:* Ensure the total number of students in the response matches the expected count.
+* *Description:* Fetch the length of the array and verify that it contains exactly 2 student objects.
+* *JsonPath Assertion:*
+```java
+int totalStudents = JsonPath.parse(responseBody).read("$.length()");
+assertEquals(2, totalStudents);
+```
+
+---
+
+*Test for Non-Empty First Names*
+
+* *Objective:* Ensure all students have non-empty `firstName` values.
+* *Description:* Fetch all first names and verify none are empty or null.
+* *JsonPath Assertion:*
+```java
+List<String> firstNames = JsonPath.parse(responseBody).read("$[*].firstName");
+assertTrue(firstNames.stream().allMatch(name -> name != null && !name.isEmpty()));
+```
+
+---
+
+*Test for Valid Email Format*
+
+* *Objective:* Ensure that the emails for all students have a valid email format.
+* *Description:* Fetch all email addresses and validate that they follow the correct email format pattern.
+* *JsonPath Assertion:*
+
+```java
+List<String> emails = JsonPath.parse(responseBody).read("$[*].email");
+emails.forEach(email -> assertTrue(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")));
+```
+
+---
+
+*Test for Courses Array Size*
+
+* *Objective:* Ensure each student has exactly 2 courses.
+* *Description:* Fetch the `courses` array for each student and check that it contains exactly 2 entries.
+* *JsonPath Assertion:*
+
+```java
+List<List<String>> courses = JsonPath.parse(responseBody).read("$[*].courses");
+courses.forEach(courseList -> assertEquals(2, courseList.size()));
+```
+
+
+== Best Buy REST Project
+
+* https://github.com/BestBuy/api-playground
+
+----
+git clone https://github.com/bestbuy/api-playground/
+cd api-playground
+npm install
+npm start
+# Best Buy API Playground started at http://localhost:3030
+----
+
+---
+
+################
+
+*Docker*
+
+----
+docker pull tejasn1/best-buy-api-playground:latest
+
+docker run -p 8085:3030 -d tejasn1/best-buy-api-playground:latest
+
+http://localhost:8085/
+----
+
+---
+
+################
+
+*Swagger*
+
+* https://editor.swagger.io/
+
+
+== Football
+
+* James Willett
+
