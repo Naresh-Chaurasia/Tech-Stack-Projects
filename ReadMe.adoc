@@ -4,21 +4,6 @@
 :sectnums:
 :sectnumlevels: 5
 
-== Selenium
-
-* https://github.com/NarendraCodeHub/the-internet.herokuapp/tree/master
-** Java
-
-* https://github.com/mlozowska/the-internet.herokuapp
-** Python
-
-* https://developer.chrome.com/docs/chromedriver/downloads
-* https://googlechromelabs.github.io/chrome-for-testing/
-** Chrome Driver
-
-* Selenium
-** /Users/nareshchaurasia/nc/GenC/selenium-maven-project
-
 
 == Video Game Project
 
